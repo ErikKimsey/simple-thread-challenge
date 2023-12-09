@@ -1,6 +1,8 @@
 /**
  * 
- * Rules:
+ * QUESTIONS FOR AL:
+ * -- if a project is only 1 or 2 days, those days are priced as ONLY full-days?  Or BOTH, travel AND full-days?
+ * -- "sequence of projects"? A "sequence" is: a Set's Projects' dates overlap?
  * 
  * 
  */
@@ -12,7 +14,33 @@
 // -- set dates to Project.days[]
 // -- set cityCost to Project.cost
 // ----- if(count <= 2) :: 
-// --------- 
+// --------- Project.reimbursement = fullday_city(low/high)cost * count
+// ----- if(count > 2) :: 
+// --------- [_ BEGIN WITH THE: "THE MEATY LOGIC" _]
+
+// === === //
+// === === //
+// === === //
+//
+// === Set the cost of each project, while IGNORING other projects in set === //
+// "THE MEATY LOGIC"
+// -- Get Number of Travel Days::
+// ---- Project.dates[begin] && Project.dates[end]
+// -- Get Number of Full Days::
+// ---- Project.dates.length - PRoject.travelDaysCnt
+// -- Calculate total cost:: 
+// ---- trvl = Project.travelDaysCnt * Project.travelCostViaCity
+// ---- full = Project.fullDaysCnt * Project.fullDayCostViaCity
+// -------- Project.reimbursement = "trvl" + "full"
+// 
+// === Find Date-Overlap of each Set's Projects === //
+// === === //
+// === === //
+// === === //
+// 
+// === Find Date-Overlap of each Set's Projects === //
+
+
 
 
 // ========================================================================
@@ -30,7 +58,9 @@ class Project {
     this.end = end;
     this.totalDays = totalDays;
     this.cost = cityCost;
-    this.days = [];
+    this.dates = [];
+    this.travelDaysCnt = -1;
+    this.FullDaysCnt = -1;
     this.reimbursement = -1;
   }
 
@@ -44,8 +74,16 @@ class Project {
 }
 
 class Set {
-  constructor() {
+  constructor(id) {
+    this.id = id;
     this.projects = [];
     this.totalSetReimbursementAmnt = 0;
+    this.date
+  }
+
+  createProjects() {
+
   }
 }
+
+export { Project, Set };
