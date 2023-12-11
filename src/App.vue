@@ -2,10 +2,15 @@
 import HelloWorld from './components/HelloWorld.vue'
 import ReimbursementProject from './components/ReimbursementProject.vue'
 import { PROJECT_DATA } from './project_data';
+import { InitReimbursementCalculation } from "./ReimbursementProject";
 
 
 let HelloWorldText = " YO YO YO YO Y O"
 let TESTTEST = "TEST TEST"
+
+InitReimbursementCalculation();
+
+
 
 
 
