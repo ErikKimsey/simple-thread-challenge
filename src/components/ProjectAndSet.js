@@ -1,16 +1,19 @@
 
 
 class Project {
-  constructor(projNumber, begin, end, cityCost) {
-    this.projectId = projNumber;
+  constructor(projNumber, begin, end, cityType, set) {
+    this.id = projNumber;
     this.begin = begin;
     this.end = end;
     this.totalDays = -1;
-    this.cost = cityCost;
+    this.cityType = cityType;
+    this.set = set;
+
+
     this.dates = [];
-    this.travelDaysCnt = -1;
-    this.FullDaysCnt = -1;
-    this.reimbursement = -1;
+    this.travelDaysCnt = 0;
+    this.FullDaysCnt = 0;
+    this.reimbursement = 0;
   }
 
   set setDaysArr(days) {
