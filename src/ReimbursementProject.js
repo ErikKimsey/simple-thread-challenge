@@ -1,11 +1,53 @@
-import { PROJECT_DATA } from './project_data'
-import { Project, Set } from './components/ProjectAndSet'
+import { PROJECT_DATA } from './data/project_data'
+import { Project, Set } from './components/ProjectAndSetClasses'
+
+
+/**
+ * Outline of my initial attempt at the challenge:
+ */
+// [] -- convert date to Javascript "Date"
+// [] -- get data from project_data.js
+// [] -- count quantity of project dates
+// [] -- set count to Project instance
+// [] -- set project dates to Project.days[]
+// [] -- set cityCost to Project.cost
+// ----- if(count <= 2) ::
+// --------- Project.reimbursement = fullday_city(low/high)cost * count
+// ----- if(count > 2) ::
+// --------- [_ BEGIN WITH THE: "THE MEATY LOGIC" _]
+//
+// === === //
+// === === //
+// === === //
+//
+// === Set the cost of each project, while IGNORING other projects in set === //
+// "MEATY LOGIC"
+//
+// Solution #1
+// -- Get Number of Travel Days::
+// ---- Project.dates[begin] && Project.dates[end]
+// -- Get Number of Full Days::
+// ---- Project.dates.length - PRoject.travelDaysCnt
+//
+// Solution #2
+// -- while instantiating each Project::
+// ---- proj[i].reimb = proj[i].days.count * proj[i].costType
+// ------ proj.reimb = proj.days.count * proj.costType
+// ---- if(proj[i-1])
+// ------ if(proj2.beginDate < proj1.endDate) ::
+// --------- >> (count overlap count && find the higher cityCost proj && calc reimbursement difference via "count * higher cost" && set lowCost.reimb = 0)
+//
+// ========================================================================
+// ========================================================================
+
 
 const HIGH_CITY_FULL_DAY = 85
 const LOW_CITY_FULL_DAY = 75
 const HIGH_CITY_TRAVEL = 55
 const LOW_CITY_TRAVEL = 45
 
+
+// Assigned hard-coded city costs to an object, for the purpose of calculation 
 let CITY_COSTS = {
     high: {
         travel: HIGH_CITY_TRAVEL,
@@ -19,6 +61,8 @@ let CITY_COSTS = {
 
 const Sets = []
 
+// 
+// My initial thinking was to 
 export function InitReimbursementCalculation() {
     if (PROJECT_DATA) {
         PROJECT_DATA[1].projects.forEach((e, i) => {
@@ -38,8 +82,6 @@ export function InitReimbursementCalculation() {
             project.end = eD
 
             let dd = new Date('01/01/2023')
-            console.log('01/01/2023 == 10 /01 / 2023')
-            console.log('01/01/2023' == '01/01/2023')
 
             // [] -- set duration of project
             let daysCount = CalculateDurationOfProject(bD, eD)
@@ -47,9 +89,6 @@ export function InitReimbursementCalculation() {
 
             // [] -- set project reimbursement
             project.reimbursement = CalcReimbursement(e.cityCost, daysCount)
-
-            // console.log(project);
-            // })
         })
     }
 }
@@ -104,38 +143,3 @@ function CalcReimbursement(_cityType, _daysCount) {
 
     return travelReimbursement + fullDayReimbursement
 }
-
-// [] -- convert date
-// [] -- get data from project_data
-// [] -- count numver of project dates
-// [] -- set count to Project instance
-// [] -- set project dates to Project.days[]
-// [] -- set cityCost to Project.cost
-// ----- if(count <= 2) ::
-// --------- Project.reimbursement = fullday_city(low/high)cost * count
-// ----- if(count > 2) ::
-// --------- [_ BEGIN WITH THE: "THE MEATY LOGIC" _]
-//
-// === === //
-// === === //
-// === === //
-//
-// === Set the cost of each project, while IGNORING other projects in set === //
-// "MEATY LOGIC"
-//
-// Solution #1
-// -- Get Number of Travel Days::
-// ---- Project.dates[begin] && Project.dates[end]
-// -- Get Number of Full Days::
-// ---- Project.dates.length - PRoject.travelDaysCnt
-//
-// Solution #2
-// -- while instantiating each Project::
-// ---- proj[i].reimb = proj[i].days.count * proj[i].costType
-// ------ proj.reimb = proj.days.count * proj.costType
-// ---- if(proj[i-1])
-// ------ if(proj2.beginDate < proj1.endDate) ::
-// --------- >> (count overlap count && find the higher cityCost proj && calc reimbursement difference via "count * higher cost" && set lowCost.reimb = 0)
-//
-// ========================================================================
-// ========================================================================

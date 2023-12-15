@@ -1,20 +1,17 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 import ReimbursementProject from './components/ReimbursementProject.vue'
-import { PROJECT_DATA } from './project_data'
 import { InitReimbursementCalculation } from './ReimbursementProject'
+import { PROJECT_DATA } from './project_data'
 
-let HelloWorldText = 'Erik Kimsey : Frontend Engineer'
-let TESTTEST = 'Simple Thread : Technical Challenge'
-
-InitReimbursementCalculation()
+let ERIK_KIMSEY_HEADER = 'Erik Kimsey : Frontend Engineer'
+let SIMPLE_THREAD_HEADER = 'Simple Thread : Technical Challenge'
 </script>
 
 <template>
     <header>
         <div class="wrapper">
-            <HelloWorld :msg="HelloWorldText" />
-            <ReimbursementProject :msg="TESTTEST" />
+            <HelloWorld :msg="ERIK_KIMSEY_HEADER" />
+            <ReimbursementProject :msg="SIMPLE_THREAD_HEADER" />
             <form v-on:submit.prevent="addItem">
                 <p>Add item</p>
                 <p>Item name: <input type="date" required /></p>
@@ -26,10 +23,9 @@ InitReimbursementCalculation()
             </form>
         </div>
     </header>
-
-    <main>
+    <!-- <main>
         <TheWelcome />
-    </main>
+    </main> -->
 </template>
 
 <style scoped>
