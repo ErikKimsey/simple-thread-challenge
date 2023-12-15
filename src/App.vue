@@ -1,62 +1,76 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import ReimbursementProject from './components/ReimbursementProject.vue'
-import { PROJECT_DATA } from './project_data';
-import { InitReimbursementCalculation } from "./ReimbursementProject";
+import { PROJECT_DATA } from './project_data'
+import { InitReimbursementCalculation } from './ReimbursementProject'
 
+let HelloWorldText = 'Erik Kimsey : Frontend Engineer'
+let TESTTEST = 'Simple Thread : Technical Challenge'
 
-let HelloWorldText = " YO YO YO YO Y O"
-let TESTTEST = "TEST TEST"
-
-InitReimbursementCalculation();
-
-
-
-
-
-
-
+InitReimbursementCalculation()
 </script>
 
 <template>
-  <header>
+    <header>
+        <div class="wrapper">
+            <HelloWorld :msg="HelloWorldText" />
+            <ReimbursementProject :msg="TESTTEST" />
+            <form v-on:submit.prevent="addItem">
+                <p>Add item</p>
+                <p>Item name: <input type="date" required /></p>
+                <p>How many: <input type="number" /></p>
+                <div>
+                    <button type="submit">Add item</button>
+                    <button type="submit">Add item</button>
+                </div>
+            </form>
+        </div>
+    </header>
 
-    <div class="wrapper">
-      <HelloWorld :msg=HelloWorldText />
-      <ReimbursementProject :msg=TESTTEST />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <main>
+        <TheWelcome />
+    </main>
 </template>
 
 <style scoped>
 header {
-  line-height: 1.5;
+    display: flex;
+    flex-flow: column;
+    line-height: 1.5;
+    width: 100vw;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.wrapper {
+    width: 50%;
 }
 
 @media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+    header {
+        display: flex;
+        flex-flow: column;
+    }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+    header .wrapper {
+        width: 50%;
+        display: flex;
+        place-items: center;
+        flex-wrap: wrap;
+    }
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+@media (min-width: 360px) {
+    header {
+        display: flex;
+        place-items: center;
+        padding-right: calc(var(--section-gap) / 2);
+        align-items: flex-start;
+    }
+
+    header .wrapper {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+    }
 }
 </style>
